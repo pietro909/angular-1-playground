@@ -1,6 +1,6 @@
 import {IQService, IPromise, ITimeoutService, IDeferred} from "angular";
 
-export class Promiser {
+export class PromiserService {
 
 	static id = "promiserService";
 
@@ -10,20 +10,36 @@ export class Promiser {
 		private $timeout: ITimeoutService
 	) {	}
 
-	propagateExceptionWithError(): IPromise<string> {
+    passThrough(): IPromise<any> {
+        return this.failingPromise();
+    }
+
+    catchError(): IPromise<any> {
+        return this.failingPromise()
+            .catch((error: any) => {
+                console.error(`${error} what an error!`);
+                return error;
+            });
+    }
+
+	propagateExceptionWithError(): IPromise<any> {
 		return this.failingPromise()
-			.then((message: string) => {
-				// doing stuff with the message
-				return message;
-			})
 			.catch((error: any) => {
 				console.error(`${error} what an error!`);
-				// throw new Error();
+                throw new Error();
 			});
 	}
 
-	private failingPromise(): IPromise<string> {
-		const deferred: IDeferred<string> = this.$q.defer<string>();
+	propagateExceptionWithReject(): IPromise<any> {
+		return this.failingPromise()
+			.catch((error: any) => {
+				console.error(`${error} what an error!`);
+                return this.$q.reject();
+			});
+	}
+
+	private failingPromise(): IPromise<any> {
+		const deferred: IDeferred<any> = this.$q.defer<any>();
 
 		this.$timeout(() => {
 			const now = new Date();
