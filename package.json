@@ -7,7 +7,6 @@
     "doc": "doc",
     "test": "test"
   },
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": ""
@@ -17,6 +16,10 @@
     "typescript",
     "test"
   ],
+  "scripts": {
+    "test": "gulp test",
+    "postinstall": "node node_modules/bower/bin/bower install"
+  },
   "author": "Pietro Grandi",
   "license": "MIT",
   "devDependencies": {
