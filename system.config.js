@@ -16,6 +16,8 @@ System.config({
 	},
 
 	map: {
-		"angular": "bower/angular/angular"
+		"angular": "bower/angular/angular",
+		"angular-mocks": "bower/angular-mocks/angular-mocks",
+		"angular-1-playground": "_artifact/amd/index"
 	}
 });

@@ -10,10 +10,18 @@ export class PromiserService {
 		private $timeout: ITimeoutService
 	) {	}
 
+    /**
+     * Just return the plain promise without interacting with it
+     * @returns {IPromise<any>}
+     */
     passThrough(): IPromise<any> {
         return this.failingPromise();
     }
 
+    /**
+     * Return the promise catching the failure
+     * @returns {IPromise<TResult>}
+     */
     catchError(): IPromise<any> {
         return this.failingPromise()
             .catch((error: any) => {
@@ -22,6 +30,10 @@ export class PromiserService {
             });
     }
 
+    /**
+     * Return the promise catching the failure and throwing a new exception
+     * @returns {IPromise<TResult>}
+     */
 	propagateExceptionWithError(): IPromise<any> {
 		return this.failingPromise()
 			.catch((error: any) => {
@@ -30,6 +42,10 @@ export class PromiserService {
 			});
 	}
 
+    /**
+     * Return the promise catching the failure and rejecting
+     * @returns {IPromise<any>}
+     */
 	propagateExceptionWithReject(): IPromise<any> {
 		return this.failingPromise()
 			.catch((error: any) => {
@@ -48,4 +64,5 @@ export class PromiserService {
 
 		return deferred.promise;
 	}
+
 }
