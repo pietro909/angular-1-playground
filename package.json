@@ -17,8 +17,7 @@
     "test"
   ],
   "scripts": {
-    "test": "gulp test",
-    "postinstall": "bower install"
+    "test": "gulp test"
   },
   "author": "Pietro Grandi",
   "license": "MIT",
